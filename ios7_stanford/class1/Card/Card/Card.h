@@ -18,5 +18,5 @@
 
 
 //public 方法
-- (int)match:(Card*)card;
+- (int)match:(NSArray*)otherCards;
 @end
