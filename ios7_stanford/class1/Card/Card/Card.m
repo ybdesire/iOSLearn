@@ -8,6 +8,33 @@
 
 #import "Card.h"
 
-@implementation Card
+//OC并不要求你在使用之前一定要声明
+//所以可以在.m中创建私有方法
 
+@interface Card()
+
+- (void)private_func;
+
+@end
+
+
+
+@implementation Card
+//实现私有方法
+- (void) private_func
+{
+    
+}
+
+//public
+-(int)match:(Card*)card
+{
+    int score=0;
+    
+    if([card.contents isEqualToString:self.contents]){//发送消息有两种方法：方括号、点号；
+        score=1;
+    }//这里比较没有用==，应为==只比较指针本身，而这里要比较内容
+    
+    return score;
+}
 @end
