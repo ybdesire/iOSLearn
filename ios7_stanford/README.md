@@ -33,3 +33,12 @@
 * +号方法：静态方法, 注意其调用方式[类名 方法名]
 
 
+PlayingCardDeck类
+* init()继承自NSObject
+   * - (instancetype) init {}
+* init()总是返回self 
+* 关于init的强制规定
+   * 创建一个X实例(50%都用这种方法)： [[X alloc] init]
+   * 除非外面有init，否则永远别再里面调用alloc
+   * 除非里面有alloc，否则永远别再外面调用init，并且调用init不能多于一次
+* 
