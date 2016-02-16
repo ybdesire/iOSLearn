@@ -19,6 +19,17 @@
 // Deck类实现
 @implementation Deck
 
+//cards 的 getter
+- (NSMutableArray *)cards
+{
+    if(_cards==nil)
+    {
+        _cards = [[NSMutableArray alloc] init];
+    }
+    return _cards;
+}
+
+
 - (void)addCard:(Card *)card atTop:(BOOL)atTop
 {
     if(atTop)
