@@ -22,3 +22,12 @@
    * 实现： 在getter中来申请内存
    * 注意： 这是OC开发的习惯，不要把property初始化放在ctor中做
 * OC自动对属性cards做出@synthesize cards = _cards，所以直接用_cards就可以访问到cards
+
+
+添加PlayingCard类
+* NSUInteger在iPhone5是64位，iPhone4以下是32位
+* PlayingCard继承于Card类
+   * Card的property contents 就被继承下来
+* @符号： 编译器会为@的字符串创建字符串对象
+* 若 setter和getter都被重写，编译器就不会生成_suit，所以不能直接用带下划线的变量，必须手动synthesize
+* 
