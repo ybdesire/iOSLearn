@@ -41,4 +41,21 @@ PlayingCardDeck类
    * 创建一个X实例(50%都用这种方法)： [[X alloc] init]
    * 除非外面有init，否则永远别再里面调用alloc
    * 除非里面有alloc，否则永远别再外面调用init，并且调用init不能多于一次
-* 
+
+Xcode讲解
+* M - 之前写的那些类
+* V - storyboard
+* C - ViewController.h/ ViewController.m
+
+Xcode工程
+* iOS->Single View Application
+* AppDelegate.h/ AppDelegate.m 多任务处理时用
+* 在storyboard上加上一个button，拖入一张图片
+* 按住control键，将button拖到controller中
+* 60 min
+
+
+
+
+
+
