@@ -14,7 +14,7 @@
 //重写父类中property contents的getter
 - (NSString*) contents
 {
-    NSArray *rankStrings = @[@"?", @"A", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"J", @"Q", @"K"];
+    NSArray *rankStrings = [PlayingCard rankStrings];
     
     return [rankStrings[self.rank] stringByAppendingString:self.suit];//返回format过的字符串(rank-牌大小, suit-花色)
 }
@@ -30,10 +30,34 @@
 //suit setter
 - (void)setSuit:(NSString*)suit//确保设置的花色只能是给定这几个（红心，方片，梅花，黑桃）
 {
-    if([@[@"h", @"d", @"c", @"s"] containsObject:suit])
+    if([[PlayingCard validSuits] containsObject:suit])
     {
         _suit = suit;
     }
+}
+
++ (NSArray*)validSuits//静态方法
+{
+    return @[@"h", @"d", @"c", @"s"];
+}
+
++ (NSArray*)rankStrings//静态方法, 注意其调用方式[类名 方法名]
+{
+    return @[@"?", @"A", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"J", @"Q", @"K"];
+}
+
++ (NSUInteger)maxRank//rankStrings中，有多少个字符串
+{
+    return [[self rankStrings] count]-1;
+}
+
+//重写rank的setter，保证rank不会被设置错误的数值，比如15
+- (void)setRank:(NSUInteger)rank
+{
+    if(rank<=[PlayingCard maxRank])
+    {
+        _rank = rank;
+    } 
 }
 
 

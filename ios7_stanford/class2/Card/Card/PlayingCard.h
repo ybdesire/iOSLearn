@@ -17,5 +17,7 @@
 
 @property (nonatomic) NSUInteger rank;//牌大小：2，3，4...10(K)，11(Q)，12(J)，13(A)
 
++ (NSArray*)validSuits;
 
++ (NSUInteger) maxRank;
 @end
