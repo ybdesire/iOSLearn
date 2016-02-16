@@ -14,3 +14,11 @@
 
 接着class1的代码来
 继续添加Deck类（一副牌）
+* 函数名由多个字段组成：addCard atTop
+* 函数重载：addCard atTop/ addCard
+* property初始为nil
+* 惰性初始化（不是在ctor中初始化）
+   * 优点： 能让ctor中垃圾更少，用的时候才申请内存而不是向ctor开始就申请一大堆内存
+   * 实现： 在getter中来申请内存
+   * 注意： 这是OC开发的习惯，不要把property初始化放在ctor中做
+* OC自动对属性cards做出@synthesize cards = _cards，所以直接用_cards就可以访问到cards
