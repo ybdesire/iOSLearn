@@ -21,12 +21,19 @@
 
 - (void)addCard:(Card *)card atTop:(BOOL)atTop
 {
-    
+    if(atTop)
+    {
+        [self.cards insertObject:card atIndex:0];
+    }
+    else
+    {
+        [self.cards addObject:card];
+    }
 }
 
 - (void)addCard:(Card *)card
 {
-    
+    [self addCard:card atTop:NO];//调用自己写的addCard atTop
 }
 
 - (Card*)drawRandomCard
