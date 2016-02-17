@@ -51,8 +51,10 @@ Xcode工程
 * iOS->Single View Application
 * AppDelegate.h/ AppDelegate.m 多任务处理时用
 * 在storyboard上加上一个button，拖入一张图片
-* 按住control键，将button拖到controller中
-* 60 min
+* 按住control键，将button拖到controller中的implementation区
+* 按住Option键+鼠标指向代码，展开代码说明，根据说明里的链接进入Apple自己的离线说明文档
+* Option+双击，直接进入说明文档
+* 添加一个Lable，按住control，将Lable
 
 
 
