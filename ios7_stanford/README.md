@@ -1,3 +1,8 @@
+# Ref
+
+* slide: http://web.stanford.edu/class/cs193p/cgi-bin/drupal/downloads-2013-fall
+
+
 # class1
 
 创建一个OSX Application ‘Command Line Tool’项目
@@ -42,10 +47,12 @@ PlayingCardDeck类
    * 除非外面有init，否则永远别再里面调用alloc
    * 除非里面有alloc，否则永远别再外面调用init，并且调用init不能多于一次
 
+
 Xcode讲解
 * M - 之前写的那些类
 * V - storyboard
 * C - ViewController.h/ ViewController.m
+
 
 Xcode工程
 * iOS->Single View Application
@@ -55,6 +62,67 @@ Xcode工程
 * 按住Option键+鼠标指向代码，展开代码说明，根据说明里的链接进入Apple自己的离线说明文档
 * Option+双击，直接进入说明文档
 * 添加一个Lable，按住control，将Lable
+
+
+课后看class2的slide
+* 下载地址：http://web.stanford.edu/class/cs193p/cgi-bin/drupal/system/files/lectures/Lecture%202_1.pdf
+* NSString
+```
+//内容比较
+NSString *contents；
+[contents isEqualToString:otherContents]
+
+//格式化
+[NSString stringWithFormat:@"%d%@", self.rank, self.suit];
+```
+
+* 调用类内成员函数，通过self
+```
+[self addCard:card atTop:NO];
+```
+
+* NSMutableArray
+```
+@property (strong, nonatomic) NSMutableArray *cards;//存储这副牌的所有扑克牌,初始cards为nil
+
+//插入元素
+[self.cards insertObject:card atIndex:0];//插入内容到头部
+[self.cards addObject:card];//直接添加到尾部
+
+//移除元素
+[self.cards removeObjectAtIndex:index];
+
+//得到Array大小
+[self.cards count]
+```
+
+* 在getter中做初始化
+```
+@property (strong, nonatomic) NSMutableArray *cards;//存储这副牌的所有扑克牌,初始cards为nil
+
+- (NSMutableArray *)cards
+{
+if(_cards==nil)//记住这里OC会自动给出 @synthesize cards = _cards，cards是_cards的别名
+{
+_cards = [[NSMutableArray alloc] init];
+}
+return _cards;
+}
+```
+* 得到一个小于N的随机正整数
+```
+unsigned index = arc4random() % [self.cards count];
+
+```
+
+* Array
+```
+//suit是否在array中
+[@[@"♥",@"♦",@"♠",@"♣"] containsObject:suit]
+```
+
+
+
 
 
 
