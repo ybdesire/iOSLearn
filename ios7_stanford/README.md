@@ -122,8 +122,22 @@ unsigned index = arc4random() % [self.cards count];
 ```
 
 
+# class3
 
+纸牌游戏中的核心逻辑都应该放在Model，而不是Controller
+Model中不能有任何跟用户界面相关的事情
 
+可以将public中的readonly property声明为private中的readwrite
+``` 
+.h中
+@property (nonatomic, readonly) NSInteger score;
+
+.m中
+
+```
+
+homework 
+* 匹配三张牌
 
 
 
