@@ -7,14 +7,28 @@
 //
 
 #import "ViewController.h"
+#import "PlayingCardDeck.h"
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;
-@property (nonatomic) int flipCount;
+@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;//显示计数的label
+@property (nonatomic) int flipCount;//计数值
+@property (strong, nonatomic) Deck *deck;
 @end
 
 @implementation ViewController
+//初始化deck
+- (Deck*)deck
+{
+    if (_deck==nil) {
+        _deck = [self createDeck];
+    }
+    return _deck;
+}
 
+- (Deck*)createDeck
+{
+    return [[PlayingCardDeck alloc] init];
+}
 //在flipCount的setter里，将计数值显示到Label
 - (void) setFlipCount:(int)flipCount
 {
@@ -33,9 +47,10 @@
     }
     else
     {
+        Card *card = [self.deck drawRandomCard];
         [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
                           forState:UIControlStateNormal];
-        [sender setTitle:@"A♣︎" forState:UIControlStateNormal];
+        [sender setTitle:card.contents forState:UIControlStateNormal];
     }
     
     self.flipCount++;
