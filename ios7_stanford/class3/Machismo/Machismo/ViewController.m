@@ -8,59 +8,63 @@
 
 #import "ViewController.h"
 #import "PlayingCardDeck.h"
+#import "CardMatchingGame.h"
+
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *flipsLabel;//显示计数的label
-@property (nonatomic) int flipCount;//计数值
 @property (strong, nonatomic) Deck *deck;
+@property (strong,nonatomic) CardMatchingGame *game;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+
 @end
 
 @implementation ViewController
-//初始化deck
-- (Deck*)deck
+//
+- (CardMatchingGame*) game
 {
-    if (_deck==nil) {
-        _deck = [self createDeck];
+    if (_game==nil) {
+        _game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
     }
-    return _deck;
+    return  _game;
 }
+
 
 - (Deck*)createDeck
 {
     return [[PlayingCardDeck alloc] init];
 }
-//在flipCount的setter里，将计数值显示到Label
-- (void) setFlipCount:(int)flipCount
-{
-    _flipCount = flipCount;
-    self.flipsLabel.text = [NSString stringWithFormat:@"Flips: %d", _flipCount];
-    NSLog(@"flips = %d", self.flipCount);
-}
 
 //单击button时，调用这个函数
 - (IBAction)touchCardButton:(UIButton *)sender {
 
-    if ([sender.currentTitle length]!=0) {
-        [sender setBackgroundImage:[UIImage imageNamed:@"cardback"]
-                          forState:UIControlStateNormal];
-        [sender setTitle:@"" forState:UIControlStateNormal];
-        self.flipCount++;
-    }
-    else
-    {
-        Card *card = [self.deck drawRandomCard];
-        if (card)
-        {
-            [sender setBackgroundImage:[UIImage imageNamed:@"cardfront"]
-                              forState:UIControlStateNormal];
-            [sender setTitle:card.contents forState:UIControlStateNormal];
-        }
-        self.flipCount++;
-    }
     
+    int cardIndex = [self.cardButtons indexOfObject:sender];
     
-    
+    [self.game chooseCardAtIndex:cardIndex];
+    [self updateUI];
 
 }
 
+
+- (void)updateUI
+{
+    for (UIButton *cardButton in self.cardButtons) {
+        int cardIndex = [self.cardButtons indexOfObject:cardButton];
+        
+        Card *card = [self.game cardAtIndex:cardIndex];
+        [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
+        [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
+        cardButton.enabled = !card.isMatched;
+    }
+}
+
+- (NSString*)titleForCard:(Card*)card
+{
+    return card.isChosen?card.contents:@"";
+}
+
+- (UIImage*)backgroundImageForCard:(Card*)card
+{
+    return [UIImage imageNamed:card.isChosen?@"cardfront":@"cardback"];
+}
 @end

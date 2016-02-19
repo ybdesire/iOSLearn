@@ -25,7 +25,7 @@
 - (NSMutableArray*)cards
 {
     if (_cards==nil) {
-        return [[NSMutableArray alloc] init];
+        _cards = [[NSMutableArray alloc] init];
     }
     return _cards;
 }
