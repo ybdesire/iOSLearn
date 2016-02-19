@@ -16,6 +16,7 @@
 @property (strong,nonatomic) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
 
 @implementation ViewController
@@ -33,6 +34,7 @@
 {
     return [[PlayingCardDeck alloc] init];
 }
+
 
 //单击button时，调用这个函数
 - (IBAction)touchCardButton:(UIButton *)sender {
@@ -56,7 +58,9 @@
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
     }
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.game.score];
 }
+
 
 - (NSString*)titleForCard:(Card*)card
 {
@@ -67,4 +71,6 @@
 {
     return [UIImage imageNamed:card.isChosen?@"cardfront":@"cardback"];
 }
+
+
 @end

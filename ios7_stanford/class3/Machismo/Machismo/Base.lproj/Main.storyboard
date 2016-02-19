@@ -221,6 +221,15 @@
                                     <action selector="touchCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WSL-NH-cIk"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLK-id-6F7">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="56" y="425" width="64" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
@@ -237,6 +246,7 @@
                                 <exclude reference="s4s-xw-6XT"/>
                                 <exclude reference="xhJ-sY-d8a"/>
                                 <exclude reference="FfM-9W-bN5"/>
+                                <exclude reference="wLK-id-6F7"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -253,10 +263,12 @@
                                 <include reference="s4s-xw-6XT"/>
                                 <include reference="xhJ-sY-d8a"/>
                                 <include reference="FfM-9W-bN5"/>
+                                <include reference="wLK-id-6F7"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="scoreLabel" destination="wLK-id-6F7" id="Niq-4A-C94"/>
                         <outletCollection property="cardButtons" destination="5Og-gI-GWS" id="piR-i0-hgJ"/>
                         <outletCollection property="cardButtons" destination="I5E-4f-7wn" id="6Pb-UN-0lx"/>
                         <outletCollection property="cardButtons" destination="I6d-qT-CmI" id="FZp-de-Ykj"/>
