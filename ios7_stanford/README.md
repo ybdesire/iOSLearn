@@ -140,6 +140,72 @@ homework
 * 匹配三张牌
 
 
+#class4
+
+创建对象的方法
+``` 
+//1. 利用alloc和init (apple越来越偏向这种方式)
+NSMutableArray *cards = [[NSMutableArray alloc] init];
+CardMatchingGame *game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+
+//2. 利用class自带的方法
+NSString
++ (instancetype)stringWithFormat:(NSString *)format
+
+UIButton
++ (instancetype)buttonWithType:(UIButtonType)buttonType
+
+NSMutableArray
++ (instancetype)arrayWithCapacity:(NSUInteger)numItems
+
+NSArray
++ (instancetype)arrayWithObject:(ObjectType)anObject
+
+//3. 让另一个对象为你创建对象
+NSString
+- (NSString *)stringByAppendingString:(NSString *)aString
+
+``` 
+
+向nil对象发送消息，在大部分情况下是可行的
+``` 
+int i = [obj methodWhichReturnsAnInt];//如果obj=nil，且方法返回一个数值，则返回0（i等于0）
+CGPoint p = [obj getLocation];//如果obj=nil，且方法返回一个结构，则返回一个undefined的值（p值不确定）
+``` 
+
+**动态绑定（Dynamic Binding）**
+* OC中有一个非常重要的类型：id（指针，指向类型未知的对象）
+``` 
+id myType;//声明了一个指针，它的类型为id
+```
+
+* static typing
+```
+NSString *s = @"x";     //"statically" typed, 是合法的
+id obj = s;             //不是static type,但也是合法的
+Array *a = obj;         //虽然是合法的，但是非常不安全（让一个array指针指向字符串）
+```
+
+* 向一个id类型的对象发送它未知的消息，程序就会crash
+   * 解决方案1： 用上面讲的static typing，让编译器来判断是否是未知消息
+   * 解决方案2： 发送消息前，先检查id的实际类型和消息（introspection）
+
+
+**内省（Introspection）**
+* NSObject（继承自NSObject的对象都有以下方法）
+   * iskindOfClass      包括继承
+   * isMemberOfClass    不包括继承
+   * respondsToSelector 是否认识某种方法
+
+ p26
+
+
+
+
+
+
+
+
 
 
 
